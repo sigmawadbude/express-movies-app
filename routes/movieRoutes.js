@@ -6,6 +6,7 @@ const { movieSchema } = require('../schemas/movieSchema');
 
 router.get('/', movieController.getMovies);
 router.post('/', validate(movieSchema), movieController.addMovie);
+router.get('/:id', movieController.getMovie);
 router.put('/:id', validate(movieSchema), movieController.updateMovie);
 router.delete('/:id', movieController.deleteMovie);
 

@@ -11,22 +11,17 @@ exports.addMovie = asyncHandler(async (req, res) => {
     res.status(201).json({ status: 'success', data: { movie } });
 });
 
+exports.getMovie = asyncHandler(async (req, res) => {
+    const movie = await movieService.getMovie(req.params.id);
+    res.json({ status: 'success', data: { movie } });
+});
+
 exports.updateMovie = asyncHandler(async (req, res) => {
   const movie = await movieService.updateMovie(req.params.id, req.body);
-  if (!movie) {
-    const error = new Error('Movie not found');
-    error.statusCode = 404;
-    throw error;
-  }
   res.json({ status: 'success', data: { movie } });
 });
 
 exports.deleteMovie = asyncHandler(async (req, res) => {
   const movie = await movieService.deleteMovie(req.params.id);
-  if (!movie) {
-    const error = new Error('Movie not found');
-    error.statusCode = 404;
-    throw error;
-  }
   res.json({ status: 'success', data: { movie } });
 });
